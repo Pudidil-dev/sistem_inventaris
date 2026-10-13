@@ -42,7 +42,7 @@ flowchart TB
     end
 
     VIEWS["views/ — Template<br/>layouts, partials, halaman"]
-    DB[("MySQL inventarisdb")]
+    DB[("SQLite storage/database/inventaris.sqlite")]
     FS[("uploads/barang")]
 
     HTML -- "GET / POST form" --> C1 & C2
@@ -129,7 +129,7 @@ sequenceDiagram
     participant C as public/barang/index.php
     participant B as app/bootstrap.php
     participant R as BarangRepository
-    participant DB as MySQL
+    participant DB as SQLite
     participant V as views/barang/index.php
 
     U->>C: GET /barang/index.php?q=laptop&page=2
@@ -155,7 +155,7 @@ sequenceDiagram
     participant C as public/barang/tambah.php
     participant Val as BarangValidator
     participant S as BarangService
-    participant DB as MySQL
+    participant DB as SQLite
 
     U->>JS: klik Simpan
     JS->>JS: validasi klien (HTML5 + aturan kustom)
@@ -186,7 +186,7 @@ sequenceDiagram
     participant SW as SweetAlert2
     participant C as public/barang/hapus.php
     participant S as BarangService
-    participant DB as MySQL
+    participant DB as SQLite
 
     A->>JS: klik Hapus (form .js-confirm-delete data-ajax)
     JS->>SW: Swal.fire(konfirmasi)

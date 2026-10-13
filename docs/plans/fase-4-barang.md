@@ -1,5 +1,7 @@
 # Fase 4 — Data Barang (CRUD + Foto + Kode Otomatis + AJAX)
 
+> **Catatan migrasi:** sejak migrasi ke SQLite, langkah MySQL di dokumen ini tidak berlaku lagi. Database sekarang satu file `storage/database/inventaris.sqlite` yang dibuat dengan `php scripts/init-db.php`. Rujuk `README.md` dan kode di repositori sebagai sumber kebenaran.
+
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
 **Goal:** Daftar barang (cari, filter, paginasi), tambah/edit dengan validasi klien+server, upload foto aman,

@@ -1,5 +1,7 @@
 # Fase 6 — QA, Audit & Rilis
 
+> **Catatan migrasi:** sejak migrasi ke SQLite, langkah MySQL di dokumen ini tidak berlaku lagi. Database sekarang satu file `storage/database/inventaris.sqlite` yang dibuat dengan `php scripts/init-db.php`. Rujuk `README.md` dan kode di repositori sebagai sumber kebenaran.
+
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans (dan superpowers:verification-before-completion) untuk fase ini.
 
 **Goal:** Membuktikan aplikasi responsif, aman, dan rapi; menulis README; menyiapkan bukti untuk asesmen; rilis v1.0.0.

@@ -1,7 +1,7 @@
 # SI Inventaris Sekolah
 
 Aplikasi web pencatatan inventaris sekolah — tugas praktik Sertifikasi **Junior Web Developer (JWD)**.
-PHP 8 native + MySQL (PDO), Bootstrap 5, Axios, Chart.js, SweetAlert2.
+PHP 8 native + SQLite (PDO, satu file), Bootstrap 5, Axios, Chart.js, SweetAlert2.
 
 ## Fitur
 - Login dengan pembatasan percobaan (5×/15 menit), logout aman (POST + CSRF)
@@ -12,7 +12,7 @@ PHP 8 native + MySQL (PDO), Bootstrap 5, Axios, Chart.js, SweetAlert2.
 - Validasi JavaScript + PHP, tampilan responsif, ikon & ilustrasi SVG
 
 ## Kebutuhan
-PHP 8.2+ (`pdo_mysql`, `fileinfo`, `mbstring`), MySQL 8 / MariaDB 10.4+, Composer 2, Node 20+.
+PHP 8.2+ (`pdo_sqlite`, `fileinfo`, `mbstring`), Composer 2, Node 20+. Tidak perlu server database.
 Detail: `docs/02-INFRASTRUKTUR.md`.
 
 ## Instalasi Cepat
@@ -20,7 +20,7 @@ Detail: `docs/02-INFRASTRUKTUR.md`.
 cp config/config.example.php config/config.php      # sesuaikan kredensial DB bila perlu
 composer install && npm install && npm run vendor
 ```
-Import database: phpMyAdmin/HeidiSQL → jalankan `database/inventarisdb.sql`.
+Buat database SQLite: `php scripts/init-db.php`. File `storage/database/inventaris.sqlite` berisi skema, data contoh, dan foto contoh.
 
 ```bash
 php -S localhost:8000 -t public
@@ -37,7 +37,7 @@ Buka http://localhost:8000
 ## Test
 ```bash
 composer test:unit          # unit test (tanpa DB)
-composer test               # unit + integration (DB inventarisdb_test dibuat otomatis)
+composer test               # unit + integration (database test SQLite dibuat otomatis)
 npx playwright install chromium
 npm run test:e2e            # end-to-end desktop + mobile
 ```
@@ -46,7 +46,7 @@ npm run test:e2e            # end-to-end desktop + mobile
 ```text
 app/        logika bisnis (Core, Enums, Helpers, Repositories, Services, Validators)
 config/     konfigurasi (config.example.php)
-database/   model database native (inventarisdb.sql)
+database/   skema dan data awal SQLite (inventarisdb.sql)
 public/     document root: controller halaman, api/, assets/, uploads/
 views/      template presentasi (layouts, partials, halaman)
 tests/      Unit, Integration, e2e

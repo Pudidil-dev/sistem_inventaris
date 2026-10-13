@@ -1,5 +1,7 @@
 # Fase 2 — Layout, Komponen UI & Autentikasi
 
+> **Catatan migrasi:** sejak migrasi ke SQLite, langkah MySQL di dokumen ini tidak berlaku lagi. Database sekarang satu file `storage/database/inventaris.sqlite` yang dibuat dengan `php scripts/init-db.php`. Rujuk `README.md` dan kode di repositori sebagai sumber kebenaran.
+
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
 **Goal:** Aset UI global (CSS, gambar SVG, JS), layout + partial reusable, halaman error, repository user & rate limit, AuthService, login/logout, serta E2E pertama.

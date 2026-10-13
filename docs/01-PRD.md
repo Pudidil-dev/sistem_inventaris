@@ -14,7 +14,7 @@
 
 SI Inventaris adalah aplikasi web untuk mencatat, mencari, dan memantau **barang inventaris sekolah**
 (elektronik, mebel, alat tulis, alat olahraga, alat laboratorium) beserta **lokasi penyimpanan**,
-**kondisi**, **sumber dana**, dan **nilai aset**. Aplikasi dibangun dengan PHP native + MySQL (PDO),
+**kondisi**, **sumber dana**, dan **nilai aset**. Aplikasi dibangun dengan PHP native + SQLite (PDO, satu file),
 Bootstrap 5, dan JavaScript (Axios, Chart.js, SweetAlert2) dengan arsitektur berlapis yang
 memisahkan logika bisnis dari presentasi.
 
@@ -229,7 +229,7 @@ Prioritas: **M** = Must, **S** = Should, **C** = Could.
 | NFR-01 | Keamanan | PDO prepared statement, `e()` pada semua output, CSRF di semua POST, BCRYPT, regenerasi session ID, cookie `HttpOnly` + `SameSite=Lax`, header CSP/X-Frame-Options/nosniff, rate limit login |
 | NFR-02 | Keamanan | Upload tervalidasi (MIME asli, ukuran, nama acak), folder upload tidak dapat mengeksekusi PHP |
 | NFR-03 | Kinerja | Halaman daftar < 500 ms pada 5.000 barang (indeks pada FK, nama, kondisi); aset statis lokal |
-| NFR-04 | Kompatibilitas | Chrome, Edge, Firefox 2 versi terakhir; PHP 8.2/8.3; MySQL 8 / MariaDB 10.4+ |
+| NFR-04 | Kompatibilitas | Chrome, Edge, Firefox 2 versi terakhir; PHP 8.2/8.3 dengan pdo_sqlite; SQLite 3 (satu file, tanpa server) |
 | NFR-05 | Responsif | Layout 375px, 768px, 1280px+ tanpa scroll horizontal halaman |
 | NFR-06 | Aksesibilitas | Label pada setiap input, kontras teks ≥ 4.5:1, fokus terlihat, `alt` pada gambar, `aria-live` untuk notifikasi |
 | NFR-07 | Maintainability | Struktur berlapis (§AGENTS.md), file ≤ 800 baris, fungsi < 50 baris, komentar Bahasa Indonesia |
@@ -270,10 +270,10 @@ Prioritas: **M** = Must, **S** = Should, **C** = Could.
 | 1 (kriteria a) | Event JS berfungsi | `submit`, `input`, `change`, `click`, `DOMContentLoaded`, `IntersectionObserver` | `public/assets/js/*.js` | E2E |
 | 2a | Library CSS | Bootstrap 5.3.8 + Bootstrap Icons | `public/assets/vendor/*`, layout | Inspeksi |
 | 2b | Library JS AJAX | Axios: statistik dashboard, pratinjau kode, hapus barang | `public/assets/js/app.js`, `public/assets/js/dashboard.js`, `public/assets/js/barang-form.js`, `public/assets/js/confirm-delete.js` | E2E + Network |
-| 2c | Library PHP | PDO (MySQL) dengan prepared statement | `app/Core/Database.php`, `app/Repositories/*` | Integration test |
+| 2c | Library PHP | PDO (SQLite) dengan prepared statement | `app/Core/Database.php`, `app/Repositories/*` | Integration test |
 | 3a | Pisah logika & presentasi | Controller tipis → Service/Repository → `render()` view | `public/**`, `app/**`, `views/**` | Review struktur |
 | 3b | File JS & CSS terpisah | Tidak ada inline script (dipaksa CSP) | `public/assets/js`, `public/assets/css` | Header CSP |
-| 3c | CRUD MySQL dengan PHP | Barang, kategori, lokasi | `app/Repositories/*` | Integration + E2E |
+| 3c | CRUD database SQLite dengan PHP | Barang, kategori, lokasi | `app/Repositories/*` | Integration + E2E |
 | 3d / 5a | Struktur folder rapi | `app/ config/ database/ public/ views/ tests/ docs/` | — | README |
 | 4a–d | UI: List, Tambah/Edit, Detail, Login, Dashboard + tabel edit/hapus | Lihat §11 | `views/**` | E2E semua halaman |
 | 4b | Responsif | Grid Bootstrap, navbar collapse, tabel responsif | `views/**`, `public/assets/css/app.css` | E2E proyek `mobile` |
@@ -288,7 +288,7 @@ Prioritas: **M** = Must, **S** = Should, **C** = Could.
 | ID | Keputusan | Alasan |
 |---|---|---|
 | D-01 | PHP native tanpa framework, *page controller* per file di `public/` | Sesuai skema JWD, mudah ditelusuri asesor |
-| D-02 | Model DB berupa **file SQL native** (`database/inventarisdb.sql`) | Permintaan user; transparan, bisa di-import phpMyAdmin |
+| D-02 | Model DB berupa **file SQL native** (`database/inventarisdb.sql`) | Permintaan user; tanpa server database, backup cukup salin file |
 | D-03 | Axios (bukan jQuery) untuk AJAX | Ringan, berbasis Promise, cukup untuk 3 kebutuhan AJAX |
 | D-04 | Tanpa Twig; view PHP + `render()` + partial | Twig opsional; menghindari dependency runtime Composer |
 | D-05 | Autoloader PSR-4 buatan sendiri di runtime; Composer hanya untuk PHPUnit | Aplikasi tetap jalan walau `vendor/` tidak ada |
@@ -301,8 +301,8 @@ Prioritas: **M** = Must, **S** = Should, **C** = Could.
 
 | Risiko | Dampak | Mitigasi |
 |---|---|---|
-| MySQL lokal tidak aktif saat test/ujian | Aplikasi & test gagal | Panduan cek layanan di `02-INFRASTRUKTUR.md`; pesan error koneksi jelas |
-| Perbedaan MySQL vs MariaDB (CHECK, pesan duplikat) | Bug tersembunyi | SQL dibatasi fitur bersama; deteksi duplikat via nama constraint |
+| Folder storage/database tidak bisa ditulis | Aplikasi & test gagal | Pastikan folder bisa ditulis; pesan error jelas (lihat `02-INFRASTRUKTUR.md`) |
+| Perbedaan dialek SQLite (LIKE, collation, datetime) | Bug tersembunyi | Test dijalankan pada SQLite; kolom kode dan nama memakai COLLATE NOCASE; deteksi duplikat via nama kolom |
 | Tidak ada driver coverage (pcov/xdebug) | Target 80% tak terukur | Dokumentasikan; tetap jalankan test penuh |
 | Kode barang bentrok saat simpan bersamaan | Gagal simpan | Constraint UNIQUE + retry 3× (BR-03) |
 | File upload berbahaya | Eksekusi kode | Validasi MIME + `getimagesize` + nama acak + `.htaccess` deny PHP |

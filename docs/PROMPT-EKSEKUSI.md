@@ -1,5 +1,7 @@
 # Prompt Eksekusi — SI Inventaris Sekolah
 
+> **Catatan migrasi:** sejak migrasi ke SQLite, langkah MySQL di dokumen ini tidak berlaku lagi. Database sekarang satu file `storage/database/inventaris.sqlite` yang dibuat dengan `php scripts/init-db.php`. Rujuk `README.md` dan kode di repositori sebagai sumber kebenaran.
+
 Kumpulan prompt siap tempel untuk menyuruh agent AI (Claude Code atau agent lain) membangun aplikasi
 berdasarkan rencana di `docs/plans/`. Pilih **satu mode**, salin blok prompt-nya apa adanya.
 
@@ -18,7 +20,7 @@ berdasarkan rencana di `docs/plans/`. Pilih **satu mode**, salin blok prompt-nya
 ## 0. Prasyarat (dilakukan user sebelum menempel prompt)
 
 - [ ] Buka sesi agent dengan working directory: `D:\porto vibe\sertikom web\sistem_sekolah\sistem_inventaris`
-- [ ] **Laragon → Start All** (MySQL aktif di `127.0.0.1:3306`, user `root` tanpa password — atau sesuaikan `config/config.php`)
+- [ ] **Tidak perlu server database.** Jalankan `php scripts/init-db.php` sekali (membuat file SQLite)
 - [ ] Izinkan agent: menjalankan `composer`, `npm`, `php`, `git`; unduhan paket Composer/npm (± 15 MB)
 - [ ] Chromium Playwright 1.64 sudah ter-cache di mesin ini (`%LOCALAPPDATA%\ms-playwright\chromium-1248`); bila belum, izinkan `npx playwright install chromium` (± 150 MB)
 - [ ] Tidak ada aplikasi lain memakai port `8000` (dev) dan `8080` (E2E)

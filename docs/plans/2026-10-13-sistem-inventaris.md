@@ -1,5 +1,7 @@
 # SI Inventaris Sekolah — Implementation Plan (Indeks)
 
+> **Catatan migrasi:** sejak migrasi ke SQLite, langkah MySQL di dokumen ini tidak berlaku lagi. Database sekarang satu file `storage/database/inventaris.sqlite` yang dibuat dengan `php scripts/init-db.php`. Rujuk `README.md` dan kode di repositori sebagai sumber kebenaran.
+
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 > Untuk eksekusi paralel per fase gunakan superpowers:subagent-driven-development (satu subagent per fase/task + review).
 
