@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Logo SI Inventaris">
+  <rect width="64" height="64" rx="14" fill="#1e40af"/>
+  <path d="M14 24 32 14l18 10v18L32 52 14 42Z" fill="#ffffff"/>
+  <path d="M14 24 32 34l18-10M32 34v18" fill="none" stroke="#1e40af" stroke-width="3" stroke-linejoin="round"/>
+  <circle cx="49" cy="15" r="6" fill="#f59e0b"/>
+</svg>

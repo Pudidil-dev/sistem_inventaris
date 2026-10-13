@@ -1,0 +1,304 @@
+/* =====================================================================
+   SI Inventaris Sekolah — gaya global
+   Urutan: token → override Bootstrap → layout → komponen → animasi → aksesibilitas → cetak
+   ===================================================================== */
+
+/* ---------- Token desain ---------- */
+:root {
+    --inv-primary: #1e40af;
+    --inv-primary-rgb: 30, 64, 175;
+    --inv-primary-dark: #1e3a8a;
+    --inv-primary-soft: #e0e7ff;
+    --inv-accent: #f59e0b;
+    --inv-bg: #f4f6fb;
+    --inv-text: #1f2937;
+    --inv-muted: #6b7280;
+    --inv-radius: 0.75rem;
+    --inv-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(15, 23, 42, 0.06);
+    --inv-shadow-hover: 0 10px 24px rgba(15, 23, 42, 0.12);
+    --inv-transition: 200ms ease;
+
+    /* Variabel Bootstrap mengikuti tema aplikasi */
+    --bs-primary: var(--inv-primary);
+    --bs-primary-rgb: var(--inv-primary-rgb);
+    --bs-link-color: var(--inv-primary);
+    --bs-link-color-rgb: var(--inv-primary-rgb);
+    --bs-link-hover-color: var(--inv-primary-dark);
+    --bs-body-bg: var(--inv-bg);
+    --bs-body-color: var(--inv-text);
+    --bs-body-font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ---------- Override komponen Bootstrap ---------- */
+body {
+    background-color: var(--inv-bg);
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--inv-primary);
+    --bs-btn-border-color: var(--inv-primary);
+    --bs-btn-hover-bg: var(--inv-primary-dark);
+    --bs-btn-hover-border-color: var(--inv-primary-dark);
+    --bs-btn-active-bg: var(--inv-primary-dark);
+    --bs-btn-active-border-color: var(--inv-primary-dark);
+    --bs-btn-disabled-bg: var(--inv-primary);
+    --bs-btn-disabled-border-color: var(--inv-primary);
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--inv-primary);
+    --bs-btn-border-color: var(--inv-primary);
+    --bs-btn-hover-bg: var(--inv-primary);
+    --bs-btn-hover-border-color: var(--inv-primary);
+    --bs-btn-active-bg: var(--inv-primary-dark);
+    --bs-btn-active-border-color: var(--inv-primary-dark);
+}
+
+.btn {
+    transition: transform var(--inv-transition), background-color var(--inv-transition), box-shadow var(--inv-transition);
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: rgba(var(--inv-primary-rgb), 0.6);
+    box-shadow: 0 0 0 0.2rem rgba(var(--inv-primary-rgb), 0.18);
+}
+
+.pagination {
+    --bs-pagination-active-bg: var(--inv-primary);
+    --bs-pagination-active-border-color: var(--inv-primary);
+    --bs-pagination-color: var(--inv-primary);
+}
+
+/* ---------- Layout ---------- */
+.inv-navbar {
+    background: linear-gradient(90deg, var(--inv-primary-dark), var(--inv-primary));
+}
+
+.inv-navbar .nav-link {
+    border-radius: 0.5rem;
+    padding-inline: 0.75rem !important;
+    transition: background-color var(--inv-transition);
+}
+
+.inv-navbar .nav-link:hover,
+.inv-navbar .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.14);
+}
+
+.inv-footer {
+    font-size: 0.875rem;
+}
+
+/* ---------- Komponen ---------- */
+.inv-card {
+    border: 0;
+    border-radius: var(--inv-radius);
+    box-shadow: var(--inv-shadow);
+    background-color: #fff;
+}
+
+.inv-card-hover {
+    transition: transform var(--inv-transition), box-shadow var(--inv-transition);
+}
+
+.inv-card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--inv-shadow-hover);
+}
+
+.inv-icon-box {
+    display: inline-grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.75rem;
+    background-color: var(--inv-primary-soft);
+    color: var(--inv-primary);
+    font-size: 1.25rem;
+}
+
+.inv-table thead th {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--inv-muted);
+    white-space: nowrap;
+}
+
+.inv-table td {
+    vertical-align: middle;
+}
+
+.inv-thumb {
+    width: 2.75rem;
+    height: 2.75rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    background-color: var(--inv-primary-soft);
+}
+
+.inv-kode {
+    font-family: SFMono-Regular, Consolas, "Liberation Mono", monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.inv-photo-frame {
+    overflow: hidden;
+    border-radius: var(--inv-radius);
+    background-color: var(--inv-primary-soft);
+}
+
+.inv-photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: transform 400ms ease;
+}
+
+.inv-photo-frame:hover .inv-photo {
+    transform: scale(1.04);
+}
+
+.inv-photo-preview {
+    max-height: 12rem;
+    object-fit: contain;
+    transition: opacity var(--inv-transition);
+}
+
+.inv-detail-list dt {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--inv-muted);
+}
+
+.inv-detail-list dd {
+    margin-bottom: 0.9rem;
+    font-weight: 600;
+}
+
+.inv-error-icon {
+    display: grid;
+    place-items: center;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background-color: var(--inv-primary-soft);
+    color: var(--inv-primary);
+    font-size: 2.25rem;
+}
+
+/* ---------- Halaman login ---------- */
+.inv-auth-bg {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(var(--inv-primary-rgb), 0.18), transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(245, 158, 11, 0.18), transparent 40%),
+        var(--inv-bg);
+}
+
+.inv-auth-card {
+    border-radius: 1.25rem;
+    background-color: #fff;
+}
+
+.inv-auth-side {
+    background: linear-gradient(160deg, var(--inv-primary-dark), var(--inv-primary));
+}
+
+.inv-auth-side img {
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: rgba(255, 255, 255, 0.92);
+}
+
+/* ---------- Animasi ---------- */
+@keyframes inv-fade-in-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: none; }
+}
+
+@keyframes inv-fade-out {
+    to { opacity: 0; transform: translateX(24px); }
+}
+
+@keyframes inv-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* fill-mode backwards agar efek hover (transform) tetap berfungsi setelah animasi selesai */
+.inv-animate {
+    animation: inv-fade-in-up 450ms ease backwards;
+}
+
+.inv-delay-1 { animation-delay: 80ms; }
+.inv-delay-2 { animation-delay: 160ms; }
+.inv-delay-3 { animation-delay: 240ms; }
+.inv-delay-4 { animation-delay: 320ms; }
+
+.inv-float {
+    animation: inv-float 5s ease-in-out infinite;
+}
+
+.inv-row-removing {
+    animation: inv-fade-out 350ms ease forwards;
+}
+
+/* ---------- Aksesibilitas ---------- */
+:focus-visible {
+    outline: 3px solid rgba(var(--inv-primary-rgb), 0.45);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 1ms !important;
+        animation-delay: 0ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 1ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ---------- Responsif ---------- */
+@media (max-width: 575.98px) {
+    .inv-page-header .btn {
+        flex: 1 1 auto;
+    }
+}
+
+/* ---------- Cetak ---------- */
+@media print {
+    .inv-navbar,
+    .inv-footer,
+    .no-print,
+    .alert,
+    form {
+        display: none !important;
+    }
+
+    body {
+        background-color: #fff;
+    }
+
+    main {
+        padding: 0 !important;
+    }
+
+    .inv-card {
+        border: 1px solid #dee2e6;
+        box-shadow: none;
+    }
+}
