@@ -1,0 +1,22 @@
+# Dependensi (diinstal ulang via composer/npm)
+/vendor/
+/node_modules/
+
+# Konfigurasi lokal berisi kredensial
+/config/config.php
+
+# File runtime
+/storage/logs/*.log
+/public/uploads/barang/*
+!/public/uploads/barang/.gitkeep
+!/public/uploads/barang/.htaccess
+
+# Hasil test
+/.phpunit.cache/
+/coverage/
+/test-results/
+/playwright-report/
+
+# OS
+.DS_Store
+Thumbs.db
