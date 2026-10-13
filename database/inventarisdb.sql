@@ -152,3 +152,21 @@ VALUES
 ('LAB-2023-0001', 'Mikroskop Binokuler',       5, 5, 'Olympus CX23',             8, 'unit',  'baik',         'Hibah',  '2023-10-02', 12500000.00, NULL, 1),
 ('LAB-2024-0001', 'Gelas Ukur 100 ml',         5, 5, 'Pyrex',                   20, 'buah',  'baik',         'BOS',    '2024-02-19', 65000.00,    NULL, 1)
 ON DUPLICATE KEY UPDATE id = id;
+
+-- Foto contoh (ilustrasi) untuk demo. Hanya mengisi kolom foto yang masih kosong,
+-- sehingga aman dijalankan ulang. Ganti dengan foto asli lewat menu Edit barang.
+UPDATE barang SET foto = 'sample-elk-2023-0001.png' WHERE kode_barang = 'ELK-2023-0001' AND foto IS NULL;
+UPDATE barang SET foto = 'sample-elk-2023-0002.png' WHERE kode_barang = 'ELK-2023-0002' AND foto IS NULL;
+UPDATE barang SET foto = 'sample-elk-2024-0001.png' WHERE kode_barang = 'ELK-2024-0001' AND foto IS NULL;
+UPDATE barang SET foto = 'sample-elk-2024-0002.png' WHERE kode_barang = 'ELK-2024-0002' AND foto IS NULL;
+UPDATE barang SET foto = 'sample-elk-2025-0001.png' WHERE kode_barang = 'ELK-2025-0001' AND foto IS NULL;
+UPDATE barang SET foto = 'sample-mbl-2022-0001.png' WHERE kode_barang = 'MBL-2022-0001' AND foto IS NULL;
+UPDATE barang SET foto = 'sample-mbl-2022-0002.png' WHERE kode_barang = 'MBL-2022-0002' AND foto IS NULL;
+UPDATE barang SET foto = 'sample-mbl-2023-0001.png' WHERE kode_barang = 'MBL-2023-0001' AND foto IS NULL;
+UPDATE barang SET foto = 'sample-atk-2025-0001.png' WHERE kode_barang = 'ATK-2025-0001' AND foto IS NULL;
+UPDATE barang SET foto = 'sample-atk-2025-0002.png' WHERE kode_barang = 'ATK-2025-0002' AND foto IS NULL;
+UPDATE barang SET foto = 'sample-olr-2024-0001.png' WHERE kode_barang = 'OLR-2024-0001' AND foto IS NULL;
+UPDATE barang SET foto = 'sample-olr-2024-0002.png' WHERE kode_barang = 'OLR-2024-0002' AND foto IS NULL;
+UPDATE barang SET foto = 'sample-lab-2021-0001.png' WHERE kode_barang = 'LAB-2021-0001' AND foto IS NULL;
+UPDATE barang SET foto = 'sample-lab-2023-0001.png' WHERE kode_barang = 'LAB-2023-0001' AND foto IS NULL;
+UPDATE barang SET foto = 'sample-lab-2024-0001.png' WHERE kode_barang = 'LAB-2024-0001' AND foto IS NULL;

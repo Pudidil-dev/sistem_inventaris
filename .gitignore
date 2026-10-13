@@ -10,6 +10,7 @@
 /public/uploads/barang/*
 !/public/uploads/barang/.gitkeep
 !/public/uploads/barang/.htaccess
+!/public/uploads/barang/sample-*.png
 
 # Hasil test dan laporan (dibuat otomatis, tidak dipakai produksi)
 /.phpunit.cache/
