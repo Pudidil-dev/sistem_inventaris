@@ -1,0 +1,21 @@
+{
+  "name": "sistem-inventaris",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Tooling frontend & E2E untuk SI Inventaris Sekolah",
+  "scripts": {
+    "vendor": "node scripts/copy-vendor.mjs",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.0",
+    "axios": "1.7.9",
+    "bootstrap": "5.3.8",
+    "bootstrap-icons": "1.11.3",
+    "chart.js": "4.4.7",
+    "sweetalert2": "11.26.25"
+  }
+}

@@ -297,3 +297,11 @@ Expected: `Version 1.64.0`.
 
 ## Catatan Deviasi
 *(isi bila ada)*
+
+## Bukti batch awal (Codex, 13 Oktober 2026)
+
+- Task 0.1: repo main dan kerangka folder dibuat sesuai rencana.
+- Task 0.2: composer install lulus; composer validate --strict: ./composer.json is valid; PHPUnit 11.5.57.
+- Task 0.3: npm install lulus; node --check scripts/copy-vendor.mjs lulus; npm run vendor menghasilkan 8 keluaran; seluruh salinan dibandingkan byte dengan sumber dan lulus.
+- npm audit melaporkan 1 dependency high (Axios 1.7.9). Versi tetap mengikuti rencana; temuan belum diselesaikan dan perlu keputusan saat review.
+- Test aplikasi belum tersedia pada F0. Task berikutnya: 0.4 (Chromium Playwright), lalu F1.
