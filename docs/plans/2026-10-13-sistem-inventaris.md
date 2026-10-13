@@ -55,8 +55,8 @@ Agent: ubah status sebelum mulai (`IN PROGRESS (nama)`) dan setelah selesai (`DO
 
 | Fase | File rencana | Dependensi | Perkiraan | Status | Bukti (ringkas) |
 |---|---|---|---|---|---|
-| F0 | [fase-0-setup.md](fase-0-setup.md) | — | 30 mnt | IN PROGRESS (Codex) | |
-| F1 | [fase-1-fondasi.md](fase-1-fondasi.md) | F0 | 2 jam | TODO | |
+| F0 | [fase-0-setup.md](fase-0-setup.md) | — | 30 mnt | DONE | PHPUnit 11.5.57; vendor 8/8 OK; Playwright 1.64.0 + Chromium OK |
+| F1 | [fase-1-fondasi.md](fase-1-fondasi.md) | F0 | 2 jam | IN PROGRESS (Codex) | |
 | F2 | [fase-2-layout-auth.md](fase-2-layout-auth.md) | F1 | 3 jam | TODO | |
 | F3A | [fase-3a-kategori.md](fase-3a-kategori.md) | F2 | 1,5 jam | TODO | |
 | F3B | [fase-3b-lokasi.md](fase-3b-lokasi.md) | F2 | 1,5 jam | TODO | |
