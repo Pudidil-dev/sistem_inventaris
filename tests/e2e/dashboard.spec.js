@@ -20,16 +20,20 @@ test.describe('Dashboard', () => {
     });
 
     test('grafik dimuat via AJAX dan dirender Chart.js', async ({ page }) => {
-        const [response] = await Promise.all([
-            page.waitForResponse((r) => r.url().includes('/api/dashboard-stats.php')),
-            page.reload(),
-        ]);
+        // Tunggu panggilan AJAX pertama selesai agar respons lama tidak ikut tertangkap saat reload
+        await page.waitForLoadState('networkidle');
+        const responsePromise = page.waitForResponse((r) => r.url().includes('/api/dashboard-stats.php'));
+        await page.reload();
+        const response = await responsePromise;
 
         expect(response.status()).toBe(200);
-        const body = await response.json();
-        expect(body.data.kondisi.values).toEqual([153, 38, 8]);
-        expect(body.data.kategori.labels[0]).toBe('Mebel');
         await expect(page.locator('[data-stats-url]')).toHaveAttribute('data-charts-ready', 'true');
+        const chartData = await page.evaluate(() => ({
+            kondisi: window.Chart.getChart('chartKondisi').data.datasets[0].data,
+            kategori: window.Chart.getChart('chartKategori').data.labels[0],
+        }));
+        expect(chartData.kondisi).toEqual([153, 38, 8]);
+        expect(chartData.kategori).toBe('Mebel');
         await expect(page.locator('#chartKondisi')).toBeVisible();
         await expect(page.locator('#chartKategori')).toBeVisible();
     });

@@ -1,0 +1,75 @@
+/* Gaya khusus halaman dashboard (dimuat lewat $pageStyles) */
+
+.inv-hero {
+    overflow: hidden;
+    color: #fff;
+    background: linear-gradient(120deg, var(--inv-primary-dark), var(--inv-primary) 60%, #3b82f6);
+}
+
+.inv-hero-img {
+    max-width: 100%;
+    height: auto;
+    padding: 0.75rem;
+    border-radius: 1rem;
+    background-color: rgba(255, 255, 255, 0.92);
+}
+
+.inv-stat-icon {
+    display: inline-grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.875rem;
+    font-size: 1.35rem;
+}
+
+.inv-tone-primary { background-color: var(--inv-primary-soft); color: var(--inv-primary); }
+.inv-tone-info { background-color: #e0f2fe; color: #0369a1; }
+.inv-tone-success { background-color: #dcfce7; color: #15803d; }
+.inv-tone-danger { background-color: #fee2e2; color: #b91c1c; }
+
+.inv-min-w-0 {
+    min-width: 0;
+}
+
+.inv-chart-box {
+    position: relative;
+    height: 280px;
+}
+
+.inv-chart-box canvas {
+    position: relative;
+    z-index: 1;
+}
+
+/* Placeholder berkilau selama data grafik dimuat */
+.inv-skeleton {
+    position: absolute;
+    inset: 0;
+    border-radius: 0.75rem;
+    background: linear-gradient(90deg, #eef2ff 25%, #f8fafc 50%, #eef2ff 75%);
+    background-size: 200% 100%;
+    animation: inv-shimmer 1.4s linear infinite;
+    transition: opacity 300ms ease;
+}
+
+.inv-skeleton.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes inv-shimmer {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+}
+
+@media (max-width: 767.98px) {
+    .inv-hero-img {
+        max-width: 220px;
+    }
+
+    .inv-chart-box {
+        height: 240px;
+    }
+}
