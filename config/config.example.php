@@ -19,13 +19,9 @@ return [
         'timezone' => 'Asia/Jakarta',
     ],
     'db' => [
-        'host'     => $env('DB_HOST', '127.0.0.1'),
-        'port'     => $env('DB_PORT', '3306'),
-        'name'     => $env('DB_NAME', 'inventarisdb'),
-        'user'     => $env('DB_USER', 'root'),
-        'password' => $env('DB_PASSWORD', ''),
-        'charset'  => 'utf8mb4',
-        'timezone' => '+07:00',
+        'driver' => 'sqlite',
+        // File database SQLite, relatif terhadap folder proyek. Tidak perlu server database.
+        'path'   => $env('DB_PATH', 'storage/database/inventaris.sqlite'),
     ],
     'upload' => [
         'dir'       => dirname(__DIR__) . '/public/uploads/barang',

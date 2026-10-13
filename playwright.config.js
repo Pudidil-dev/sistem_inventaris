@@ -1,9 +1,9 @@
 // Konfigurasi E2E: server PHP bawaan + database *_test yang di-reset sebelum test.
-// E2E_PORT & E2E_DB_NAME dapat ditimpa agar beberapa agent berjalan paralel tanpa bentrok.
+// E2E_PORT & E2E_DB_PATH dapat ditimpa agar beberapa agent berjalan paralel tanpa bentrok.
 import { defineConfig, devices } from '@playwright/test';
 
 const PORT = Number(process.env.E2E_PORT ?? 8080);
-const DB_NAME = process.env.E2E_DB_NAME ?? 'inventarisdb_test';
+const DB_PATH = process.env.E2E_DB_PATH ?? 'storage/database/inventaris_test.sqlite';
 const BASE_URL = `http://127.0.0.1:${PORT}`;
 
 export default defineConfig({
@@ -41,7 +41,7 @@ export default defineConfig({
             APP_ENV: 'testing',
             APP_DEBUG: 'true',
             APP_BASE_URL: BASE_URL,
-            DB_NAME,
+            DB_PATH,
         },
     },
 });

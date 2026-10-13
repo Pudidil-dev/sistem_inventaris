@@ -93,9 +93,9 @@ final class BarangService
         }
     }
 
-    // Pesan MySQL/MariaDB menyebut nama constraint unik kode barang
+    // Pesan SQLite menyebut kolom unik: barang.kode_barang
     private static function isDuplicateKode(PDOException $e): bool
     {
-        return $e->getCode() === '23000' && str_contains($e->getMessage(), 'uq_barang_kode');
+        return $e->getCode() === '23000' && str_contains($e->getMessage(), 'kode_barang');
     }
 }

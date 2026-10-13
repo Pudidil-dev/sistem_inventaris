@@ -17,7 +17,7 @@ class LoginAttemptRepository
         $stmt = $this->pdo->prepare(
             'SELECT COUNT(*) FROM login_attempts
              WHERE username = :username AND ip_address = :ip
-               AND attempted_at >= (NOW() - INTERVAL :minutes MINUTE)'
+               AND attempted_at >= datetime(\'now\', \'localtime\', \'-\' || :minutes || \' minutes\')'
         );
         $stmt->bindValue('username', $username);
         $stmt->bindValue('ip', $ip);

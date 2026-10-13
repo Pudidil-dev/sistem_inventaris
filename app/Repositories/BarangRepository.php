@@ -98,8 +98,8 @@ class BarangRepository
     public function lastKodeWithPrefix(string $prefix): ?string
     {
         $stmt = $this->pdo->prepare(
-            'SELECT kode_barang FROM barang WHERE kode_barang LIKE :prefix
-             ORDER BY CHAR_LENGTH(kode_barang) DESC, kode_barang DESC LIMIT 1'
+            'SELECT kode_barang FROM barang WHERE kode_barang LIKE :prefix ESCAPE \'\\\'
+             ORDER BY length(kode_barang) DESC, kode_barang DESC LIMIT 1'
         );
         $stmt->execute(['prefix' => like_escape($prefix) . '%']);
         $kode = $stmt->fetchColumn();
@@ -116,7 +116,7 @@ class BarangRepository
         $keyword = trim((string) ($filters['q'] ?? ''));
         if ($keyword !== '') {
             $like = '%' . like_escape($keyword) . '%';
-            $conditions[] = '(b.nama LIKE :q1 OR b.kode_barang LIKE :q2 OR b.merk LIKE :q3)';
+            $conditions[] = "(b.nama LIKE :q1 ESCAPE '\\' OR b.kode_barang LIKE :q2 ESCAPE '\\' OR b.merk LIKE :q3 ESCAPE '\\')";
             $params = [...$params, 'q1' => $like, 'q2' => $like, 'q3' => $like];
         }
 

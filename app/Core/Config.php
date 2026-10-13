@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Core;
 
-// Penyimpanan konfigurasi aplikasi, dibaca dengan notasi titik: Config::get('db.name')
+// Penyimpanan konfigurasi aplikasi, dibaca dengan notasi titik: Config::get('db.path')
 final class Config
 {
     private static array $items = [];
@@ -32,7 +32,7 @@ final class Config
      * Membaca jalur bertitik atau satu bagian konfigurasi.
      * Nilai null yang tersimpan tetap dikembalikan; default hanya untuk jalur yang tidak ada.
      *
-     * @param string $key Jalur seperti db.name; titik memisahkan tingkat array.
+     * @param string $key Jalur seperti db.path; titik memisahkan tingkat array.
      * @param mixed $default Nilai pengganti ketika jalur tidak ditemukan.
      * @return mixed Nilai pada jalur atau default, tanpa konversi tipe.
      */

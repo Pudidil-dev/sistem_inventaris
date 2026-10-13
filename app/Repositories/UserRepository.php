@@ -33,7 +33,7 @@ class UserRepository
 
     public function touchLastLogin(int $id): void
     {
-        $stmt = $this->pdo->prepare('UPDATE users SET last_login_at = NOW() WHERE id = :id');
+        $stmt = $this->pdo->prepare('UPDATE users SET last_login_at = datetime(\'now\', \'localtime\') WHERE id = :id');
         $stmt->execute(['id' => $id]);
     }
 

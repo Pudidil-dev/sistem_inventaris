@@ -7,6 +7,10 @@
 
 # File runtime
 /storage/logs/*.log
+/storage/database/*.sqlite
+/storage/database/*.sqlite-journal
+/storage/database/*.sqlite-wal
+/storage/database/*.sqlite-shm
 /public/uploads/barang/*
 !/public/uploads/barang/.gitkeep
 !/public/uploads/barang/.htaccess

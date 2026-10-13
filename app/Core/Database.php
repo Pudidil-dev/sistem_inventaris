@@ -7,65 +7,71 @@ use PDO;
 use PDOException;
 use RuntimeException;
 
-// Pembuat koneksi PDO MySQL tunggal (lazy) untuk seluruh aplikasi
+// Koneksi PDO ke file SQLite. Tidak memerlukan server database.
 final class Database
 {
     private static ?PDO $connection = null;
 
     /**
-     * Membuat koneksi dari konfigurasi aktif pada pemanggilan pertama dan memakainya kembali.
+     * Koneksi utama aplikasi: dibuka sekali per request dari config db.path.
      *
-     * @throws RuntimeException Jika server atau database tidak dapat dihubungi.
+     * @throws RuntimeException Jika file database tidak dapat dibuka.
      */
     public static function connection(): PDO
     {
         if (self::$connection === null) {
-            self::$connection = self::create(Config::get('db'));
+            self::$connection = self::open((string) Config::get('db.path'));
         }
 
         return self::$connection;
     }
 
     /**
-     * Membuat koneksi independen dengan prepared statement native dan hasil berupa array asosiatif.
-     * Detail kegagalan dicatat ke log; exception tetap membawa penyebab asli untuk debugging.
+     * Membuka koneksi ke file SQLite tertentu. Folder dan file dibuat jika belum ada.
+     * Foreign key dan batas tunggu kunci diaktifkan untuk setiap koneksi.
      *
-     * @param array{host: string, port: string, charset: string, name: string,
-     *     user: string, password: string, timezone: string} $db Konfigurasi koneksi tepercaya.
-     * @param bool $withDatabase False untuk koneksi server pada harness database test.
-     * @throws RuntimeException Jika PDO gagal membuka koneksi.
+     * @param string $path Path file; path relatif dihitung dari folder proyek.
+     * @throws RuntimeException Jika folder atau file database tidak dapat dibuka.
      */
-    public static function create(array $db, bool $withDatabase = true): PDO
+    public static function open(string $path): PDO
     {
-        $dsn = sprintf('mysql:host=%s;port=%s;charset=%s', $db['host'], $db['port'], $db['charset']);
-        if ($withDatabase) {
-            $dsn .= ';dbname=' . $db['name'];
+        $file = self::resolve($path);
+        $dir = dirname($file);
+        if (!is_dir($dir) && !mkdir($dir, 0755, true) && !is_dir($dir)) {
+            throw new RuntimeException("Folder database tidak dapat dibuat: {$dir}");
         }
 
         try {
-            return new PDO($dsn, $db['user'], $db['password'], [
+            $pdo = new PDO('sqlite:' . $file, null, null, [
                 PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 PDO::ATTR_EMULATE_PREPARES   => false,
-                PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '" . $db['timezone'] . "'",
             ]);
+            $pdo->exec('PRAGMA foreign_keys = ON');
+            $pdo->exec('PRAGMA busy_timeout = 5000');
+
+            return $pdo;
         } catch (PDOException $e) {
-            // Detail teknis hanya ke log; pesan ke pengguna tetap generik
-            error_log('[DB] Koneksi gagal: ' . $e->getMessage());
-            throw new RuntimeException(
-                'Koneksi ke database gagal. Pastikan MySQL aktif dan database sudah di-import.',
-                0,
-                $e
-            );
+            error_log('[DB] Gagal membuka SQLite: ' . $e->getMessage());
+            throw new RuntimeException('Database tidak dapat dibuka. Periksa folder storage/database.', 0, $e);
         }
     }
 
     /**
-     * Melepas referensi koneksi bersama agar pemanggilan berikutnya membaca konfigurasi terbaru.
-     * Referensi PDO yang masih dimiliki pemanggil lain tetap hidup.
+     * Melepas referensi koneksi utama agar pemanggilan berikutnya membaca config terbaru.
      */
     public static function disconnect(): void
     {
         self::$connection = null;
+    }
+
+    // Path relatif dihitung dari folder proyek (BASE_PATH)
+    private static function resolve(string $path): string
+    {
+        if (preg_match('#^([A-Za-z]:|/)#', $path) === 1) {
+            return $path;
+        }
+
+        return BASE_PATH . '/' . ltrim($path, '/');
     }
 }

@@ -25,7 +25,7 @@
         <env name="APP_ENV" value="testing" force="true"/>
         <env name="APP_DEBUG" value="true" force="true"/>
         <env name="APP_BASE_URL" value="http://localhost:8000" force="true"/>
-        <!-- Tanpa force: agent paralel boleh memakai DB_NAME=<nama>_test sendiri -->
-        <env name="DB_NAME" value="inventarisdb_test"/>
+        <!-- Database test: file SQLite terpisah dari database dev -->
+        <env name="DB_PATH" value="storage/database/inventaris_test.sqlite"/>
     </php>
 </phpunit>
