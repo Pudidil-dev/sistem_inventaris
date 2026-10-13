@@ -27,6 +27,7 @@ docs/test/
 *.log
 tmp/
 temp/
+tests
 
 # Editor dan IDE
 .idea/
