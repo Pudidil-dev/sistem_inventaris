@@ -1895,4 +1895,12 @@ Expected: semua test (unit + integration) `OK`, tidak ada `SYNTAX ERROR`.
 Tandai F1 `DONE` di indeks beserta ringkasan output test.
 
 ## Catatan Deviasi
-*(isi bila ada)*
+- Dokumentasi: sesuai permintaan user, fungsi dan callback Task 1.2 diberi PHPDoc Bahasa Indonesia (kontrak konfigurasi, koneksi PDO, efek samping, dan exception); logika rencana tetap sama.
+
+## Bukti batch awal (Codex, 13 Oktober 2026)
+
+- Task 1.1: import SQL dua kali lulus; masing-masing total_barang = 15 dan total_unit = 199; OK idempoten.
+- Task 1.2 RED: PHPUnit gagal karena app/bootstrap.php belum ada, sesuai rencana.
+- Task 1.2 GREEN: OK (4 tests, 6 assertions), baik test ConfigTest maupun composer test:unit.
+- php -l: seluruh 7 file PHP yang dibuat lulus. config/config.php terverifikasi gitignored.
+- Berikutnya Task 1.3: harness database test dan SchemaTest.
