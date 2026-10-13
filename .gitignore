@@ -7,7 +7,8 @@
 
 # File runtime
 /storage/logs/*.log
-/storage/database/*.sqlite
+# Database test dan jurnal sementara tidak ikut repo (database dev ikut repo)
+/storage/database/*_test.sqlite
 /storage/database/*.sqlite-journal
 /storage/database/*.sqlite-wal
 /storage/database/*.sqlite-shm
