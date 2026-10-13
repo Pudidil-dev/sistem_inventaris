@@ -181,6 +181,8 @@ Akun default (**ganti di produksi**):
 Master: 5 kategori (`ELK` Elektronik, `MBL` Mebel, `ATK` Alat Tulis Kantor, `OLR` Alat Olahraga,
 `LAB` Alat Laboratorium) dan 6 lokasi (`LAB-KOM`, `R-TU`, `R-GURU`, `GDG-OR`, `LAB-IPA`, `R-7A`).
 
+Foto contoh: 15 ilustrasi demo `public/uploads/barang/sample-*.png`, satu per barang seed. Ini bukan foto asli. `UPDATE` di seed hanya mengisi kolom `foto` yang masih kosong, sehingga aman dijalankan ulang. Ganti dengan foto asli lewat menu Edit barang.
+
 Angka berikut dihitung dari seed dan **dipakai sebagai expected value** di integration & E2E test:
 
 | Metrik | Nilai |

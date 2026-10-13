@@ -264,19 +264,19 @@ Prioritas: **M** = Must, **S** = Should, **C** = Could.
 
 | No | Unit kompetensi / langkah | Implementasi | File utama | Bukti/Test |
 |---|---|---|---|---|
-| 1a | Animasi CSS/JS | Keyframes fade-in-up, hover lift, skeleton, count-up, fade-out baris | `assets/css/app.css`, `dashboard.css`, `js/dashboard.js`, `js/confirm-delete.js` | E2E `dashboard.spec.js` |
-| 1b | Validasi form JS | Validator generik berbasis atribut HTML5 + aturan kustom (tanggal ≤ hari ini, ukuran & tipe file) | `assets/js/form-validation.js` | E2E `barang.spec.js`, `auth.spec.js` |
-| 1c | Multimedia | Ikon Bootstrap Icons, ilustrasi SVG, foto barang + pratinjau, grafik | `assets/img/*`, `views/dashboard/index.php`, `js/barang-form.js` | E2E upload foto |
-| 1 (kriteria a) | Event JS berfungsi | `submit`, `input`, `change`, `click`, `DOMContentLoaded`, `IntersectionObserver` | `assets/js/*.js` | E2E |
+| 1a | Animasi CSS/JS | Keyframes fade-in-up, hover lift, skeleton, count-up, fade-out baris | `public/assets/css/app.css`, `public/assets/css/dashboard.css`, `public/assets/js/dashboard.js`, `public/assets/js/confirm-delete.js` | E2E `dashboard.spec.js` |
+| 1b | Validasi form JS | Validator generik berbasis atribut HTML5 + aturan kustom (tanggal ≤ hari ini, ukuran & tipe file) | `public/assets/js/form-validation.js` | E2E `barang.spec.js`, `auth.spec.js` |
+| 1c | Multimedia | Ikon Bootstrap Icons, ilustrasi SVG, foto barang + pratinjau, grafik | `public/assets/img/*`, `views/dashboard/index.php`, `public/assets/js/barang-form.js` | E2E upload foto |
+| 1 (kriteria a) | Event JS berfungsi | `submit`, `input`, `change`, `click`, `DOMContentLoaded`, `IntersectionObserver` | `public/assets/js/*.js` | E2E |
 | 2a | Library CSS | Bootstrap 5.3.8 + Bootstrap Icons | `public/assets/vendor/*`, layout | Inspeksi |
-| 2b | Library JS AJAX | Axios: statistik dashboard, pratinjau kode, hapus barang | `js/app.js`, `js/dashboard.js`, `js/barang-form.js`, `js/confirm-delete.js` | E2E + Network |
+| 2b | Library JS AJAX | Axios: statistik dashboard, pratinjau kode, hapus barang | `public/assets/js/app.js`, `public/assets/js/dashboard.js`, `public/assets/js/barang-form.js`, `public/assets/js/confirm-delete.js` | E2E + Network |
 | 2c | Library PHP | PDO (MySQL) dengan prepared statement | `app/Core/Database.php`, `app/Repositories/*` | Integration test |
 | 3a | Pisah logika & presentasi | Controller tipis → Service/Repository → `render()` view | `public/**`, `app/**`, `views/**` | Review struktur |
 | 3b | File JS & CSS terpisah | Tidak ada inline script (dipaksa CSP) | `public/assets/js`, `public/assets/css` | Header CSP |
 | 3c | CRUD MySQL dengan PHP | Barang, kategori, lokasi | `app/Repositories/*` | Integration + E2E |
 | 3d / 5a | Struktur folder rapi | `app/ config/ database/ public/ views/ tests/ docs/` | — | README |
 | 4a–d | UI: List, Tambah/Edit, Detail, Login, Dashboard + tabel edit/hapus | Lihat §11 | `views/**` | E2E semua halaman |
-| 4b | Responsif | Grid Bootstrap, navbar collapse, tabel responsif | `views/**`, `app.css` | E2E proyek `mobile` |
+| 4b | Responsif | Grid Bootstrap, navbar collapse, tabel responsif | `views/**`, `public/assets/css/app.css` | E2E proyek `mobile` |
 | 5b | Fungsi PHP di file terpisah | `app/Helpers/*.php` per topik | `app/Helpers` | Unit test helper |
 | 5c | Modul reusable | Partial view, `render()`, validator generik JS, `Paginator`, `UploadService` | `views/partials`, `app/Core` | Unit test |
 | 6a | Standar kode | PSR-12, komentar, penamaan (AGENTS.md §5) | semua | Code review |
