@@ -25,6 +25,8 @@
 /playwright/.cache/
 
 # Folder test dan dokumen yang tidak terkait produksi
+# Dokumentasi tidak ikut repo (atas permintaan)
+docs/
 docs/test/
 **/test/
 *.tmp
