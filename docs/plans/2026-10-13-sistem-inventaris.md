@@ -57,10 +57,10 @@ Agent: ubah status sebelum mulai (`IN PROGRESS (nama)`) dan setelah selesai (`DO
 |---|---|---|---|---|---|
 | F0 | [fase-0-setup.md](fase-0-setup.md) | — | 30 mnt | DONE | PHPUnit 11.5.57; vendor 8/8 OK; Playwright 1.64.0 + Chromium OK |
 | F1 | [fase-1-fondasi.md](fase-1-fondasi.md) | F0 | 2 jam | DONE | PHPUnit 44 test OK (unit+integration); php -l 0 error; reset-db menolak nama non-test |
-| F2 | [fase-2-layout-auth.md](fase-2-layout-auth.md) | F1 | 3 jam | IN PROGRESS (Haiku 5.5) | |
-| F3A | [fase-3a-kategori.md](fase-3a-kategori.md) | F2 | 1,5 jam | TODO | |
-| F3B | [fase-3b-lokasi.md](fase-3b-lokasi.md) | F2 | 1,5 jam | TODO | |
-| F4 | [fase-4-barang.md](fase-4-barang.md) | F3A, F3B | 4 jam | TODO | |
+| F2 | [fase-2-layout-auth.md](fase-2-layout-auth.md) | F1 | 3 jam | DONE | PHPUnit 58 OK pada akhir F2; E2E auth 9/9 OK |
+| F3A | [fase-3a-kategori.md](fase-3a-kategori.md) | F2 | 1,5 jam | DONE | E2E kategori 7/7 OK |
+| F3B | [fase-3b-lokasi.md](fase-3b-lokasi.md) | F2 | 1,5 jam | DONE | E2E lokasi 6/6 OK; gabungan auth+kategori+lokasi 22/22 OK; PHPUnit 90 OK |
+| F4 | [fase-4-barang.md](fase-4-barang.md) | F3A, F3B | 4 jam | IN PROGRESS (Haiku 5.5) | |
 | F5 | [fase-5-dashboard.md](fase-5-dashboard.md) | F2 | 2 jam | TODO | |
 | F6 | [fase-6-qa-rilis.md](fase-6-qa-rilis.md) | F4, F5 | 2 jam | TODO | |
 
