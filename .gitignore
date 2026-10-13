@@ -31,6 +31,10 @@ temp/
 .idea/
 .vscode/
 
+# Instruksi untuk agent AI (lokal, tidak ikut repo)
+/AGENTS.md
+/CLAUDE.md
+
 # OS
 .DS_Store
 Thumbs.db
