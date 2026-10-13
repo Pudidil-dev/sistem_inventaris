@@ -11,11 +11,25 @@
 !/public/uploads/barang/.gitkeep
 !/public/uploads/barang/.htaccess
 
-# Hasil test
+# Hasil test dan laporan (dibuat otomatis, tidak dipakai produksi)
 /.phpunit.cache/
 /coverage/
 /test-results/
 /playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# Folder test dan dokumen yang tidak terkait produksi
+docs/test/
+**/test/
+*.tmp
+*.log
+tmp/
+temp/
+
+# Editor dan IDE
+.idea/
+.vscode/
 
 # OS
 .DS_Store
